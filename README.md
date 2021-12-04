@@ -10,23 +10,34 @@ sendkeys is in early development. tests pass on a real machine, but I'm done try
 
 ```
 === RUN   Test_strToKeys
-    sendkeys_test.go:21: string: yeet, keys: []int{21, 18, 18, 20}
-    sendkeys_test.go:21: string: YEET, keys: []int{-21, -18, -18, -20}
-    sendkeys_test.go:21: string: YeeT, keys: []int{-21, 18, 18, -20}
---- PASS: Test_strToKeys (6.00s)
+    sendkeys_test.go:44: string: yeet, keys: []int{21, 18, 18, 20}
+    sendkeys_test.go:44: string: YEET, keys: []int{-21, -18, -18, -20}
+    sendkeys_test.go:44: string: YeeT, keys: []int{-21, 18, 18, -20}
+--- PASS: Test_strToKeys (0.00s)
 === RUN   Test_NewKBWrapWithOptions
-    sendkeys_test.go:87: sleeping for 250ms...
-    sendkeys_test.go:31: [listener] go listenForKeys() start
-    sendkeys_test.go:72: [receiver] go func() start
-    sendkeys_test.go:48: Key pressed: y
-    sendkeys_test.go:48: Key pressed: e
-    sendkeys_test.go:48: Key pressed: e
-    sendkeys_test.go:48: Key pressed: t
-    sendkeys_test.go:81: [receiver] go func() return
-    sendkeys_test.go:116: got 4 characters, got yeet string.
---- PASS: Test_NewKBWrapWithOptions (2.29s)
+    sendkeys_test.go:65: [OPT] Noisy: true NoDelay: true Stubborn: true Random: true
+    sendkeys_test.go:79: [OPT] Noisy: false NoDelay: false Stubborn: false Random: false
+--- PASS: Test_NewKBWrapWithOptions (2.00s)
+=== RUN   Test_sendkeys
+    sendkeys_test.go:26: Key pressed: y
+    sendkeys_test.go:26: Key pressed: e
+    sendkeys_test.go:26: Key pressed: e
+    sendkeys_test.go:26: Key pressed: t
+    sendkeys_test.go:150: got 4 characters, got yeet string.
+    sendkeys_test.go:26: Key pressed: Y
+    sendkeys_test.go:26: Key pressed: E
+    sendkeys_test.go:26: Key pressed: E
+    sendkeys_test.go:26: Key pressed: T
+    sendkeys_test.go:150: got 4 characters, got YEET string.
+    sendkeys_test.go:26: Key pressed: Y
+    sendkeys_test.go:26: Key pressed: e
+    sendkeys_test.go:26: Key pressed: e
+    sendkeys_test.go:26: Key pressed: T
+    sendkeys_test.go:150: got 4 characters, got YeeT string.
+    sendkeys_test.go:26: Key pressed:
+--- PASS: Test_sendkeys (3.13s)
 PASS
-ok  	sendkeys	8.371s
+ok  	git.tcp.direct/kayos/sendkeys	5.206s
 ```
 
 ### Compatibility

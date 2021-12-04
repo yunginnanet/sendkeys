@@ -9,9 +9,6 @@ import (
 )
 
 func listenForKeys(t *testing.T, ret chan string) {
-	t.Log("[listener] go listenForKeys() start")
-	defer t.Log("[listener go listenForKeys() return")
-
 	keysEvents, err := keyboard.GetKeys(10)
 	if err != nil {
 		panic(err)
@@ -36,7 +33,7 @@ func listenForKeys(t *testing.T, ret chan string) {
 
 func strTo(teststr string, t *testing.T) {
 	split := strings.Split(teststr, "")
-	k, err := NewKBWrapWithOptions(Noisy)
+	k, err := NewKBWrapWithOptions(Noisy, NoDelay)
 	if err != nil {
 		t.Fatalf(err.Error())
 	}
@@ -85,23 +82,29 @@ func Test_NewKBWrapWithOptions(t *testing.T) {
 }
 
 func Test_sendkeys(t *testing.T) {
-	var teststr = "yeet"
-
+	ret := make(chan string)
+	go listenForKeys(t, ret)
 	k, err := NewKBWrapWithOptions(Noisy)
 	if err != nil {
 		t.Fatal(err)
 	}
+	testsend(t, k, "yeet", ret)
+	testsend(t, k, "YEET", ret)
+	testsend(t, k, "YeeT", ret)
+	// testsend(t, k,"Yeet!")
+}
+
+func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
 	keys := k.strToKeys(teststr)
-	ret := make(chan string, len(teststr))
-	go listenForKeys(t, ret)
+
 	k.set(keys...)
 
 	var count = 0
 	var chars []string
 
 	go func() {
-		t.Log("[receiver] go func() start")
-		defer t.Log("[receiver] go func() return")
+		// t.Logf("[receiver(%s)] go func() start", teststr)
+		// defer t.Logf("[receiver(%s)] go func() return", teststr)
 		for {
 			select {
 			case chr := <-ret:
@@ -118,11 +121,10 @@ func Test_sendkeys(t *testing.T) {
 	//	t.Log("sleeping for 250ms...")
 	//	time.Sleep(250 * time.Millisecond)
 
-	err = k.Type(teststr)
+	err := k.Type(teststr)
 	if err != nil {
 		t.Fatalf(err.Error())
 	}
-	k.Escape()
 
 	var tick = 0
 	var brk = false
@@ -153,4 +155,5 @@ func Test_sendkeys(t *testing.T) {
 	if strings.Join(chars, "") != teststr {
 		t.Fail()
 	}
+
 }
