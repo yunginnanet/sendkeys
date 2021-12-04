@@ -4,6 +4,8 @@
 
 sendkeys is a golang module that strives to be a usability wrapper for the  [keybd_event](https://github.com/micmonay/keybd_event) library.
 
+![GoDoc image](https://tcp.ac/i/baROs)
+
 ### Status
 
 sendkeys is in early development. tests pass on a real machine, but I'm done trying to make github actions work for this one.
