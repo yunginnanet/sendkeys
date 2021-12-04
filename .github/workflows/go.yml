@@ -18,7 +18,9 @@ jobs:
         go-version: 1.17
 
     - name: Test
+      env:
+        TERM: xterm
       shell: 'script -q -e -c "bash {0}"'
       run: |
         sudo chmod +0666 /dev/uinput && go test -v ./...
-      env: TERM=xterm
+
