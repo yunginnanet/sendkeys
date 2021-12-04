@@ -2,7 +2,7 @@
 [![GoDoc](https://godoc.org/git.tcp.direct/kayos/sendkeys?status.svg)](https://godoc.org/git.tcp.direct/kayos/sendkeys)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yunginnanet/sendkeys)](https://goreportcard.com/report/github.com/yunginnanet/sendkeys)
 
-sendkeys is a golang module that strives to be a usability wrapper for the  [keybd_event](github.com/micmonay/keybd_event) library.
+sendkeys is a golang module that strives to be a usability wrapper for the  [keybd_event](https://github.com/micmonay/keybd_event) library.
 
 ### Status
 
@@ -34,5 +34,5 @@ ok  	sendkeys	8.371s
 sendkeys has only been tested in Linux so far.
 
 ### Credits
-*  ##### [micmonay](https://github.com/micmonay) of course, for creating [keybd_event](github.com/micmonay/keybd_event).
+*  ##### [micmonay](https://github.com/micmonay) of course, for creating [keybd_event](https://github.com/micmonay/keybd_event).
 * ##### [Christopher Latham Sholes](https://en.wikipedia.org/wiki/Christopher_Latham_Sholes) for his work on the QWERTY keyboard.
