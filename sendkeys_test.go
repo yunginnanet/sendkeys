@@ -122,8 +122,10 @@ func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
 			case chr := <-ret:
 				chars = append(chars, chr)
 				count++
+				time.Sleep(10 * time.Millisecond)
 			default:
-				if count == len(teststr) {
+				time.Sleep(10 * time.Millisecond)
+				if count >= len(teststr) {
 					return
 				}
 			}
@@ -150,7 +152,7 @@ func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
 			t.Fail()
 			brk = true
 			break
-		case count == len(teststr):
+		case count >= len(teststr):
 			brk = true
 			break
 		default:
@@ -160,14 +162,16 @@ func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
 	}
 
 	var final = strings.Join(chars, "")
+	final = strings.TrimSpace(final)
 
 	if final != teststr {
 		t.Logf("[FAIL] Have: %s, Wanted: %s", final, teststr)
 		t.Fail()
 	} else {
 		t.Logf(
-			"got %d characters: %s",
+			"[SUCCESS] got %d characters: %s",
 			count, final,
 		)
 	}
+	final = ""
 }
