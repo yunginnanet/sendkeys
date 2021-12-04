@@ -5,6 +5,7 @@ import (
 	"encoding/binary"
 	"math/rand"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -28,4 +29,15 @@ func linDelay() {
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
+}
+
+func compoundErr(errs []error) string {
+	var es []string
+	for _, e := range errs {
+		if e == nil {
+			continue
+		}
+		es = append(es, e.Error())
+	}
+	return strings.Join(es, ",")
 }
