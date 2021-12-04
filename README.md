@@ -1,5 +1,5 @@
 # sendkeys
-[![GoDoc](https://godoc.org/github.com/yunginnanet/sendkeys?status.svg)](https://godoc.org/github.com/yunginnanet/sendkeys)
+[![GoDoc](https://godoc.org/git.tcp.direct/kayos/sendkeys?status.svg)](https://godoc.org/git.tcp.direct/kayos/sendkeys)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yunginnanet/sendkeys)](https://goreportcard.com/report/github.com/yunginnanet/sendkeys)
 
 sendkeys is a golang module that strives to be a usability wrapper for the  [keybd_event](github.com/micmonay/keybd_event) library.
