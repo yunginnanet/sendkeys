@@ -1,4 +1,4 @@
-module sendkeys
+module git.tcp.direct/kayos/sendkeys
 
 go 1.17
 
