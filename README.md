@@ -15,65 +15,139 @@ sendkeys is in early development. tests pass on a real machine, but I'm done try
 
 ```
 === RUN   Test_strToKeys
-    sendkeys_test.go:44: string: yeet, keys: []int{21, 18, 18, 20}
-    sendkeys_test.go:44: string: YEET, keys: []int{-21, -18, -18, -20}
-    sendkeys_test.go:44: string: YeeT, keys: []int{-21, 18, 18, -20}
+    sendkeys_test.go:51: string: yeet, keys: []int{21, 18, 18, 20}
+    sendkeys_test.go:51: string: YEET, keys: []int{-21, -18, -18, -20}
+    sendkeys_test.go:51: string: YeeT, keys: []int{-21, 18, 18, -20}
 --- PASS: Test_strToKeys (0.00s)
 === RUN   Test_NewKBWrapWithOptions
-    sendkeys_test.go:65: [OPT] Noisy: true NoDelay: true Stubborn: true Random: true
-    sendkeys_test.go:79: [OPT] Noisy: false NoDelay: false Stubborn: false Random: false
+    sendkeys_test.go:72: [OPT] Noisy: true NoDelay: true Stubborn: true Random: true
+    sendkeys_test.go:86: [OPT] Noisy: false NoDelay: false Stubborn: false Random: false
 --- PASS: Test_NewKBWrapWithOptions (2.00s)
 === RUN   Test_sendkeys
-    sendkeys_test.go:26: Key pressed: y
-    sendkeys_test.go:26: Key pressed: e
-    sendkeys_test.go:26: Key pressed: e
-    sendkeys_test.go:26: Key pressed: t
-    sendkeys_test.go:150: got 4 characters, got yeet string.
-    sendkeys_test.go:26: Key pressed: Y
-    sendkeys_test.go:26: Key pressed: e
-    sendkeys_test.go:26: Key pressed: e
-    sendkeys_test.go:26: Key pressed: T
-    sendkeys_test.go:150: got 4 characters, got YeeT string.
-    sendkeys_test.go:26: Key pressed: Y
-    sendkeys_test.go:26: Key pressed: e
-    sendkeys_test.go:26: Key pressed: e
-    sendkeys_test.go:26: Key pressed: t
-    sendkeys_test.go:26: Key pressed: !
-    sendkeys_test.go:150: got 5 characters, got Yeet! string.
-    sendkeys_test.go:26: Key pressed: $
-    sendkeys_test.go:26: Key pressed: #
-    sendkeys_test.go:26: Key pressed: !
-    sendkeys_test.go:26: Key pressed: Y
-    sendkeys_test.go:26: Key pressed: ^
-    sendkeys_test.go:26: Key pressed: %
-    sendkeys_test.go:26: Key pressed: #
-    sendkeys_test.go:26: Key pressed: *
-    sendkeys_test.go:26: Key pressed: *
-    sendkeys_test.go:26: Key pressed: (
-    sendkeys_test.go:26: Key pressed: #
-    sendkeys_test.go:26: Key pressed: (
-    sendkeys_test.go:26: Key pressed: @
-    sendkeys_test.go:26: Key pressed: ^
-    sendkeys_test.go:26: Key pressed: ?
-    sendkeys_test.go:26: Key pressed: ?
-    sendkeys_test.go:26: Key pressed: !
-    sendkeys_test.go:26: Key pressed: ?
-    sendkeys_test.go:26: Key pressed: !
-    sendkeys_test.go:26: Key pressed: `
-    sendkeys_test.go:26: Key pressed: `
-    sendkeys_test.go:26: Key pressed: `
-    sendkeys_test.go:26: Key pressed: `
-    sendkeys_test.go:26: Key pressed: `
-    sendkeys_test.go:26: Key pressed: "
-    sendkeys_test.go:26: Key pressed: _
-    sendkeys_test.go:26: Key pressed: _
-    sendkeys_test.go:26: Key pressed: t
-    sendkeys_test.go:26: Key pressed: !
-    sendkeys_test.go:150: got 29 characters, got $#!Y^%#**(#(@^??!?!`````"__t! string.
-    sendkeys_test.go:26: Key pressed:
---- PASS: Test_sendkeys (3.44s)
+    sendkeys_test.go:27: Key pressed: y
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: t
+    sendkeys_test.go:171: got 4 characters: yeet
+    sendkeys_test.go:27: Key pressed: Y
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: T
+    sendkeys_test.go:171: got 4 characters: YeeT
+    sendkeys_test.go:27: Key pressed: Y
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: t
+    sendkeys_test.go:27: Key pressed: !
+    sendkeys_test.go:171: got 5 characters: Yeet!
+    sendkeys_test.go:27: Key pressed: \
+    sendkeys_test.go:27: Key pressed: '
+    sendkeys_test.go:27: Key pressed: `
+    sendkeys_test.go:27: Key pressed: /
+    sendkeys_test.go:27: Key pressed: 3
+    sendkeys_test.go:27: Key pressed: 3
+    sendkeys_test.go:27: Key pressed: 7
+    sendkeys_test.go:27: Key pressed: !
+    sendkeys_test.go:27: Key pressed: '
+    sendkeys_test.go:27: Key pressed: \
+    sendkeys_test.go:171: got 10 characters: \'`/337!'\
+    sendkeys_test.go:27: Key pressed: W
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: l
+    sendkeys_test.go:27: Key pressed: c
+    sendkeys_test.go:27: Key pressed: o
+    sendkeys_test.go:27: Key pressed: m
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: t
+    sendkeys_test.go:27: Key pressed: o
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: y
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: t
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: t
+    sendkeys_test.go:27: Key pressed: o
+    sendkeys_test.go:27: Key pressed: w
+    sendkeys_test.go:27: Key pressed: n
+    sendkeys_test.go:27: Key pressed: ,
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: b
+    sendkeys_test.go:27: Key pressed: u
+    sendkeys_test.go:27: Key pressed: d
+    sendkeys_test.go:27: Key pressed: d
+    sendkeys_test.go:27: Key pressed: y
+    sendkeys_test.go:27: Key pressed: !
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:171: got 28 characters: Welcome to yeet town, buddy!
+    sendkeys_test.go:27: Key pressed: `
+    sendkeys_test.go:27: Key pressed: ~
+    sendkeys_test.go:27: Key pressed: !
+    sendkeys_test.go:27: Key pressed: @
+    sendkeys_test.go:27: Key pressed: #
+    sendkeys_test.go:27: Key pressed: $
+    sendkeys_test.go:27: Key pressed: %
+    sendkeys_test.go:27: Key pressed: ^
+    sendkeys_test.go:27: Key pressed: &
+    sendkeys_test.go:27: Key pressed: *
+    sendkeys_test.go:27: Key pressed: (
+    sendkeys_test.go:27: Key pressed: )
+    sendkeys_test.go:27: Key pressed: -
+    sendkeys_test.go:27: Key pressed: _
+    sendkeys_test.go:27: Key pressed: =
+    sendkeys_test.go:27: Key pressed: +
+    sendkeys_test.go:27: Key pressed: '
+    sendkeys_test.go:27: Key pressed: ;
+    sendkeys_test.go:27: Key pressed: :
+    sendkeys_test.go:27: Key pressed: <
+    sendkeys_test.go:27: Key pressed: >
+    sendkeys_test.go:27: Key pressed: /
+    sendkeys_test.go:27: Key pressed: \
+    sendkeys_test.go:27: Key pressed: ,
+    sendkeys_test.go:27: Key pressed: .
+    sendkeys_test.go:27: Key pressed: |
+    sendkeys_test.go:27: Key pressed: {
+    sendkeys_test.go:27: Key pressed: }
+    sendkeys_test.go:27: Key pressed: [
+    sendkeys_test.go:27: Key pressed: ]
+    sendkeys_test.go:27: Key pressed: `
+    sendkeys_test.go:27: Key pressed: ~
+    sendkeys_test.go:27: Key pressed: ,
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: y
+    sendkeys_test.go:27: Key pressed: o
+    sendkeys_test.go:27: Key pressed: u
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: f
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed: l
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: m
+    sendkeys_test.go:27: Key pressed: e
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:27: Key pressed: d
+    sendkeys_test.go:27: Key pressed: a
+    sendkeys_test.go:27: Key pressed: w
+    sendkeys_test.go:27: Key pressed: g
+    sendkeys_test.go:27: Key pressed: ?
+    sendkeys_test.go:27: Key pressed:
+    sendkeys_test.go:32: spacebar detected
+    sendkeys_test.go:171: got 52 characters: `~!@#$%^&*()-_=+';:<>/\,.|{}[]`~, you feel me dawg?
+--- PASS: Test_sendkeys (6.09s)
 PASS
-ok  	git.tcp.direct/kayos/sendkeys	5.507s
+ok  	git.tcp.direct/kayos/sendkeys	8.139s
+
 ```
 
 </details>
