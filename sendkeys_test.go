@@ -19,15 +19,22 @@ func listenForKeys(t *testing.T, ret chan string) {
 	})
 
 	for {
+		var s = ""
 		event := <-keysEvents
 		if event.Err != nil {
 			t.Fatalf(event.Err.Error())
 		}
 		t.Logf("Key pressed: %s", string(event.Rune))
-		if event.Key == keyboard.KeyEsc {
-			break
+
+		s = string(event.Rune)
+
+		if event.Key == keyboard.KeySpace {
+			t.Log("spacebar detected")
+			s = " "
 		}
-		ret <- string(event.Rune)
+		if len(s) > 0 {
+			ret <- s
+		}
 	}
 }
 
@@ -88,10 +95,13 @@ func Test_sendkeys(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	testsend(t, k, "yeet", ret)
 	testsend(t, k, "YeeT", ret)
 	testsend(t, k, "Yeet!", ret)
-	testsend(t, k, "$#!Y^%#**(#(@^??!?!`````\"__t!", ret)
+	testsend(t, k, "\\'`/337!'\\", ret)
+	testsend(t, k, "Welcome to yeet town, buddy!", ret)
+	testsend(t, k, "`~!@#$%^&*()-_=+';:<>/\\,.|{}[]`~, you feel me dawg?", ret)
 }
 
 func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
@@ -99,8 +109,10 @@ func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
 
 	k.set(keys...)
 
-	var count = 0
-	var chars []string
+	var (
+		count = 0
+		chars []string
+	)
 
 	go func() {
 		// t.Logf("[receiver(%s)] go func() start", teststr)
@@ -147,13 +159,15 @@ func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
 		}
 	}
 
-	t.Logf(
-		"got %d characters, got %s string.",
-		count, strings.Join(chars, ""),
-	)
+	var final = strings.Join(chars, "")
 
-	if strings.Join(chars, "") != teststr {
+	if final != teststr {
+		t.Logf("[FAIL] Have: %s, Wanted: %s", final, teststr)
 		t.Fail()
+	} else {
+		t.Logf(
+			"got %d characters: %s",
+			count, final,
+		)
 	}
-
 }

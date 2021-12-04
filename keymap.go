@@ -5,8 +5,7 @@ import (
 	"strings"
 )
 
-func (kb *KBWrap) strToKeys(s string) (keys []int) {
-	split := strings.Split(s, "")
+func (kb *KBWrap) handleRunes(split []string) (keys []int) {
 	for _, c := range split {
 		d, dok := num[c]
 		a, aok := alpha[c]
@@ -23,8 +22,24 @@ func (kb *KBWrap) strToKeys(s string) (keys []int) {
 		case symok:
 			keys = append(keys, sym)
 		default:
-			kb.errors = append(kb.errors, errors.New(ErrKeyMappingNotFound.Error()+c))
+			kb.errors = append(
+				kb.errors,
+				errors.New(ErrKeyMappingNotFound.Error()+c),
+			)
 		}
+	}
+	return
+}
+
+func (kb *KBWrap) strToKeys(s string) (keys []int) {
+	if !strings.Contains(s, " ") {
+		return kb.handleRunes(strings.Split(s, ""))
+	}
+	splitspace := strings.Split(s, " ")
+	for _, section := range splitspace {
+		split := strings.Split(section, "")
+		keys = append(keys, kb.handleRunes(split)...)
+		keys = append(keys, 57)
 	}
 	return
 }
@@ -43,25 +58,13 @@ var alpha = map[string]int{
 	"m": 50,
 }
 
-const (
-	// SpecialPrefix is the sequence of the first two characters in a string that will cause non-alphanumeric key interpretation.
-	// If no Special matches are found between SpecialPrefix and SpecialSuffix, it will be treated as a normal string would have.
-	SpecialPrefix = "{!"
-	// SpecialSuffix is the sequence of the last two characters that close out the non-alphanumeric key interpretation.
-	SpecialSuffix = "!}"
-)
-
-// Special is a map of translations for sending non-alphanumeric key events.
-var Special = map[string]int{
-	"NUMLK": 69, "SCRLK": 70, "BCKSP": 14, "[TAB]": 15, "ENTR": 28, "CAPLK": 58,
-}
-
 // Symbol is a map of translations for sending non-alphanumeric key events.
 var Symbol = map[string]int{
 	"-": 12, "_": -12, "=": 13, "+": -13, "[": 26,
-	"{": -26, "}": -27, "'": 40, "\"": -40, "`": 41,
-	"~": -41, "\\": 43, "|": -43, ",": 51, "<": -51,
-	".": 52, ">": -52, "/": 53, "?": -53, " ": 57,
-	"!": -2, "@": -3, "#": -4, "$": -5, "%": -6,
-	"^": -7, "&": -8, "*": -9, "(": -10, ")": -11,
+	"{": -26, "]": 27, "}": -27, "'": 40, "\"": -40,
+	"`": 41, "~": -41, "\\": 43, "|": -43, ",": 51,
+	"<": -51, ".": 52, ">": -52, "/": 53, "?": -53,
+	" ": 57, "!": -2, "@": -3, "#": -4, "$": -5,
+	"%": -6, "^": -7, "&": -8, "*": -9, "(": -10,
+	")": -11, ":": 39, ";": -39,
 }

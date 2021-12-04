@@ -16,10 +16,11 @@ func (kb *KBWrap) check() bool {
 }
 
 func (kb *KBWrap) handle(err error) {
-	if err != nil {
-		kb.errors = append(kb.errors, err)
-		if kb.noisy {
-			println(err.Error())
-		}
+	if err == nil {
+		return
+	}
+	kb.errors = append(kb.errors, err)
+	if kb.noisy {
+		println(err.Error())
 	}
 }

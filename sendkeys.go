@@ -117,6 +117,7 @@ func (kb *KBWrap) Type(s string) error {
 			kb.d.HasSHIFT(true)
 			key = abs(key)
 		}
+
 		kb.set(key)
 		kb.press()
 		kb.clr()
