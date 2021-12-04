@@ -89,9 +89,9 @@ func Test_sendkeys(t *testing.T) {
 		t.Fatal(err)
 	}
 	testsend(t, k, "yeet", ret)
-	testsend(t, k, "YEET", ret)
 	testsend(t, k, "YeeT", ret)
-	// testsend(t, k,"Yeet!")
+	testsend(t, k, "Yeet!", ret)
+	testsend(t, k, "$#!Y^%#**(#(@^??!?!`````\"__t!", ret)
 }
 
 func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {

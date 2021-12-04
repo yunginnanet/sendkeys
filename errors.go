@@ -3,7 +3,7 @@ package sendkeys
 import "errors"
 
 // ErrKeyMappingNotFound is an error returned when we don't know how to handle the given character.
-var ErrKeyMappingNotFound = errors.New("failed to map key")
+var ErrKeyMappingNotFound = errors.New("failed to map key: ")
 
 func (kb *KBWrap) check() bool {
 	if kb.stubborn {

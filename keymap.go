@@ -1,6 +1,7 @@
 package sendkeys
 
 import (
+	"errors"
 	"strings"
 )
 
@@ -9,6 +10,7 @@ func (kb *KBWrap) strToKeys(s string) (keys []int) {
 	for _, c := range split {
 		d, dok := num[c]
 		a, aok := alpha[c]
+		sym, symok := Symbol[c]
 		ca, caok := alpha[strings.ToLower(c)]
 
 		switch {
@@ -18,8 +20,10 @@ func (kb *KBWrap) strToKeys(s string) (keys []int) {
 			keys = append(keys, d)
 		case caok:
 			keys = append(keys, 0-ca)
+		case symok:
+			keys = append(keys, sym)
 		default:
-			kb.errors = append(kb.errors, ErrKeyMappingNotFound)
+			kb.errors = append(kb.errors, errors.New(ErrKeyMappingNotFound.Error()+c))
 		}
 	}
 	return
@@ -49,8 +53,7 @@ const (
 
 // Special is a map of translations for sending non-alphanumeric key events.
 var Special = map[string]int{
-	"NUMLK": 69, "SCRLK": 70, "BCKSP": 14, "[TAB]": 15, "ENTR": 28,
-	"CAPSLOCK": 58,
+	"NUMLK": 69, "SCRLK": 70, "BCKSP": 14, "[TAB]": 15, "ENTR": 28, "CAPLK": 58,
 }
 
 // Symbol is a map of translations for sending non-alphanumeric key events.
@@ -59,4 +62,6 @@ var Symbol = map[string]int{
 	"{": -26, "}": -27, "'": 40, "\"": -40, "`": 41,
 	"~": -41, "\\": 43, "|": -43, ",": 51, "<": -51,
 	".": 52, ">": -52, "/": 53, "?": -53, " ": 57,
+	"!": -2, "@": -3, "#": -4, "$": -5, "%": -6,
+	"^": -7, "&": -8, "*": -9, "(": -10, ")": -11,
 }

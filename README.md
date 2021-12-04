@@ -6,7 +6,10 @@ sendkeys is a golang module that strives to be a usability wrapper for the  [key
 
 ### Status
 
-sendkeys is in early development. tests pass on a real machine, but I'm done trying to make github actions work for this one. Here's a local test output:
+sendkeys is in early development. tests pass on a real machine, but I'm done trying to make github actions work for this one.
+
+<details>
+  <summary>Local Test Results</summary>
 
 ```
 === RUN   Test_strToKeys
@@ -25,20 +28,53 @@ sendkeys is in early development. tests pass on a real machine, but I'm done try
     sendkeys_test.go:26: Key pressed: t
     sendkeys_test.go:150: got 4 characters, got yeet string.
     sendkeys_test.go:26: Key pressed: Y
-    sendkeys_test.go:26: Key pressed: E
-    sendkeys_test.go:26: Key pressed: E
-    sendkeys_test.go:26: Key pressed: T
-    sendkeys_test.go:150: got 4 characters, got YEET string.
-    sendkeys_test.go:26: Key pressed: Y
     sendkeys_test.go:26: Key pressed: e
     sendkeys_test.go:26: Key pressed: e
     sendkeys_test.go:26: Key pressed: T
     sendkeys_test.go:150: got 4 characters, got YeeT string.
+    sendkeys_test.go:26: Key pressed: Y
+    sendkeys_test.go:26: Key pressed: e
+    sendkeys_test.go:26: Key pressed: e
+    sendkeys_test.go:26: Key pressed: t
+    sendkeys_test.go:26: Key pressed: !
+    sendkeys_test.go:150: got 5 characters, got Yeet! string.
+    sendkeys_test.go:26: Key pressed: $
+    sendkeys_test.go:26: Key pressed: #
+    sendkeys_test.go:26: Key pressed: !
+    sendkeys_test.go:26: Key pressed: Y
+    sendkeys_test.go:26: Key pressed: ^
+    sendkeys_test.go:26: Key pressed: %
+    sendkeys_test.go:26: Key pressed: #
+    sendkeys_test.go:26: Key pressed: *
+    sendkeys_test.go:26: Key pressed: *
+    sendkeys_test.go:26: Key pressed: (
+    sendkeys_test.go:26: Key pressed: #
+    sendkeys_test.go:26: Key pressed: (
+    sendkeys_test.go:26: Key pressed: @
+    sendkeys_test.go:26: Key pressed: ^
+    sendkeys_test.go:26: Key pressed: ?
+    sendkeys_test.go:26: Key pressed: ?
+    sendkeys_test.go:26: Key pressed: !
+    sendkeys_test.go:26: Key pressed: ?
+    sendkeys_test.go:26: Key pressed: !
+    sendkeys_test.go:26: Key pressed: `
+    sendkeys_test.go:26: Key pressed: `
+    sendkeys_test.go:26: Key pressed: `
+    sendkeys_test.go:26: Key pressed: `
+    sendkeys_test.go:26: Key pressed: `
+    sendkeys_test.go:26: Key pressed: "
+    sendkeys_test.go:26: Key pressed: _
+    sendkeys_test.go:26: Key pressed: _
+    sendkeys_test.go:26: Key pressed: t
+    sendkeys_test.go:26: Key pressed: !
+    sendkeys_test.go:150: got 29 characters, got $#!Y^%#**(#(@^??!?!`````"__t! string.
     sendkeys_test.go:26: Key pressed:
---- PASS: Test_sendkeys (3.13s)
+--- PASS: Test_sendkeys (3.44s)
 PASS
-ok  	git.tcp.direct/kayos/sendkeys	5.206s
+ok  	git.tcp.direct/kayos/sendkeys	5.507s
 ```
+
+</details>
 
 ### Compatibility
 
