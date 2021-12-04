@@ -1,4 +1,4 @@
-package main
+package sendkeys
 
 import (
 	crip "crypto/rand"
