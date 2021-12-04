@@ -12,6 +12,8 @@ const (
 	// Random will use random sleeps throughout the typing process.
 	// Otherwise, a static 10 milliseconds will be used.
 	Random
+	// NoDelay will bypass the 2 second delay for linux, mostly for testing.
+	NoDelay
 )
 
 func (kb *KBWrap) processOptions(opts ...KBOpt) {
@@ -19,6 +21,7 @@ func (kb *KBWrap) processOptions(opts ...KBOpt) {
 		Stubborn: &kb.stubborn,
 		Noisy:    &kb.noisy,
 		Random:   &kb.random,
+		NoDelay:  &kb.nodelay,
 	}
 	for _, o := range opts {
 		if option, ok := kbo[o]; !ok {

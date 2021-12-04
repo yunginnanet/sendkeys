@@ -8,25 +8,6 @@ import (
 	"github.com/eiannone/keyboard"
 )
 
-func strTo(teststr string, t *testing.T) {
-	split := strings.Split(teststr, "")
-	k, err := NewKBWrapWithOptions(Noisy)
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
-	keys := k.strToKeys(teststr)
-	if len(keys) != len(split) {
-		t.Fatalf("length of mapped keys: %d, wanted length of string: %d", len(keys), len(split))
-	}
-	t.Logf("string: %s, keys: %#v", teststr, keys)
-}
-
-func Test_strToKeys(t *testing.T) {
-	strTo("yeet", t)
-	strTo("YEET", t)
-	strTo("YeeT", t)
-}
-
 func listenForKeys(t *testing.T, ret chan string) {
 	t.Log("[listener] go listenForKeys() start")
 	defer t.Log("[listener go listenForKeys() return")
@@ -53,7 +34,57 @@ func listenForKeys(t *testing.T, ret chan string) {
 	}
 }
 
+func strTo(teststr string, t *testing.T) {
+	split := strings.Split(teststr, "")
+	k, err := NewKBWrapWithOptions(Noisy)
+	if err != nil {
+		t.Fatalf(err.Error())
+	}
+	keys := k.strToKeys(teststr)
+	if len(keys) != len(split) {
+		t.Fatalf("length of mapped keys: %d, wanted length of string: %d", len(keys), len(split))
+	}
+	t.Logf("string: %s, keys: %#v", teststr, keys)
+}
+
+func Test_strToKeys(t *testing.T) {
+	strTo("yeet", t)
+	strTo("YEET", t)
+	strTo("YeeT", t)
+}
+
 func Test_NewKBWrapWithOptions(t *testing.T) {
+	k, err := NewKBWrapWithOptions(Noisy, NoDelay, Stubborn, Random)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	opts := []*bool{&k.noisy, &k.nodelay, &k.stubborn, &k.random}
+	for _, opt := range opts {
+		if *opt != true {
+			t.Fatalf("KBWrap should have had options Noisy: true, NoDelay: true, Stubborn: true, Random: true. "+
+				"Had Noisy: %t NoDelay: %t Stubborn: %t Random: %t", k.noisy, k.nodelay, k.stubborn, k.random)
+		}
+	}
+	t.Logf("[OPT] Noisy: %t NoDelay: %t Stubborn: %t Random: %t", k.noisy, k.nodelay, k.stubborn, k.random)
+	k = nil
+	opts = nil
+	k, err = NewKBWrapWithOptions()
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	opts = []*bool{&k.noisy, &k.nodelay, &k.stubborn, &k.random}
+	for _, opt := range opts {
+		if *opt != false {
+			t.Fatalf("KBWrap should have had options Noisy: false, NoDelay: false, Stubborn: false, Random: false. "+
+				"Had Noisy: %t NoDelay: %t Stubborn: %t Random: %t", k.noisy, k.nodelay, k.stubborn, k.random)
+		}
+	}
+	t.Logf("[OPT] Noisy: %t NoDelay: %t Stubborn: %t Random: %t", k.noisy, k.nodelay, k.stubborn, k.random)
+	k = nil
+	opts = nil
+}
+
+func Test_sendkeys(t *testing.T) {
 	var teststr = "yeet"
 
 	k, err := NewKBWrapWithOptions(Noisy)
@@ -84,13 +115,14 @@ func Test_NewKBWrapWithOptions(t *testing.T) {
 		}
 	}()
 
-	t.Log("sleeping for 250ms...")
-	time.Sleep(250 * time.Millisecond)
+	//	t.Log("sleeping for 250ms...")
+	//	time.Sleep(250 * time.Millisecond)
 
 	err = k.Type(teststr)
 	if err != nil {
 		t.Fatalf(err.Error())
 	}
+	k.Escape()
 
 	var tick = 0
 	var brk = false

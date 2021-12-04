@@ -38,3 +38,25 @@ var alpha = map[string]int{
 	"x": 45, "c": 46, "v": 47, "b": 48, "n": 49,
 	"m": 50,
 }
+
+const (
+	// SpecialPrefix is the sequence of the first two characters in a string that will cause non-alphanumeric key interpretation.
+	// If no Special matches are found between SpecialPrefix and SpecialSuffix, it will be treated as a normal string would have.
+	SpecialPrefix = "{!"
+	// SpecialSuffix is the sequence of the last two characters that close out the non-alphanumeric key interpretation.
+	SpecialSuffix = "!}"
+)
+
+// Special is a map of translations for sending non-alphanumeric key events.
+var Special = map[string]int{
+	"NUMLK": 69, "SCRLK": 70, "BCKSP": 14, "[TAB]": 15, "ENTR": 28,
+	"CAPSLOCK": 58,
+}
+
+// Symbol is a map of translations for sending non-alphanumeric key events.
+var Symbol = map[string]int{
+	"-": 12, "_": -12, "=": 13, "+": -13, "[": 26,
+	"{": -26, "}": -27, "'": 40, "\"": -40, "`": 41,
+	"~": -41, "\\": 43, "|": -43, ",": 51, "<": -51,
+	".": 52, ">": -52, "/": 53, "?": -53, " ": 57,
+}
