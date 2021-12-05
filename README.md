@@ -2,15 +2,47 @@
 [![GoDoc](https://godoc.org/git.tcp.direct/kayos/sendkeys?status.svg)](https://godoc.org/git.tcp.direct/kayos/sendkeys)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yunginnanet/sendkeys)](https://goreportcard.com/report/github.com/yunginnanet/sendkeys)
 
-sendkeys is a golang module that strives to be a usability wrapper for the  [keybd_event](https://github.com/micmonay/keybd_event) library.
+### sendkeys is a (*probably*) cross-platform Go usability wrapper for the  [keybd_event](https://github.com/micmonay/keybd_event) library.
+  
+  ---
+    
+      
+ ### Summary     
+  Use this library to turn full strings into simulated keyboard events with ease;   
+  along with some neat features like with **optionally randomized delays**.   
+      
+ ---
+        
+### Improvements   
+* **optimized map lookups**  
 
+* **negative integer -> abs inversion to determine shift key necessity**  
+
+  
+  
+* **It only sends one key at a time**
+
+#### This appears to provide a faster, safer, more reliable, and easier to use alternative to [keybd_event](https://github.com/micmonay/keybd_event).
+  
+
+these tricks should should result in a very fast and clean implementation of [keybd_event](https://github.com/micmonay/keybd_event).  
+   
+#### See [my test results](#test) below and compare this wrapper with trying to use [keybd_event](https://github.com/micmonay/keybd_event) alone.
+  
+---
+    
 ![GoDoc image](https://tcp.ac/i/baROs)
+
+### Usage  
+  
+#### Check the [unit test](./sendkeys_test.go) and the [docs](https://godoc.org/git.tcp.direct/kayos/sendkeys).
 
 ### Status
 
 sendkeys is in early development. tests pass on a real machine, but I'm done trying to make github actions work for this one.
 
-<details>
+<a name="test">
+</a><details>
   <summary>Local Test Results</summary>
 
 ```
@@ -154,7 +186,7 @@ ok  	git.tcp.direct/kayos/sendkeys	8.139s
 
 ### Compatibility
 
-sendkeys has only been tested in Linux so far.
+sendkeys has only been tested in Linux so far, however the underlying library seemingly has support for all Go platforms. This should be cross platform.
 
 ### Credits
 *  ##### [micmonay](https://github.com/micmonay) of course, for creating [keybd_event](https://github.com/micmonay/keybd_event).
