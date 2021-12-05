@@ -105,9 +105,6 @@ func Test_sendkeys(t *testing.T) {
 }
 
 func testsend(t *testing.T, k *KBWrap, teststr string, ret chan string) {
-	keys := k.strToKeys(teststr)
-
-	k.set(keys...)
 
 	var (
 		count = 0
