@@ -2,32 +2,31 @@
 [![GoDoc](https://godoc.org/git.tcp.direct/kayos/sendkeys?status.svg)](https://godoc.org/git.tcp.direct/kayos/sendkeys)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yunginnanet/sendkeys)](https://goreportcard.com/report/github.com/yunginnanet/sendkeys)
 
-### sendkeys is a (*probably*) cross-platform Go usability wrapper for the  [keybd_event](https://github.com/micmonay/keybd_event) library.
+### sendkeys is a cross-platform usability wrapper for the [keybd_event](https://github.com/micmonay/keybd_event) Go library.
   
   ---
     
       
  ### Summary     
   Use this library to turn full strings into simulated keyboard events with ease;   
-  along with some neat features like with **optionally randomized delays**.   
+  along with some neat features like **optionally randomized delays**.   
       
  ---
         
 ### Improvements   
-* **optimized map lookups**  
+* Optimized map lookups 
 
-* **negative integer -> abs inversion to determine shift key necessity**  
+* Negative integer -> abs inversion to determine shift key necessity  
 
   
   
-* **It only sends one key at a time**
+* Only send one key at a time, clear state in between
 
-#### This appears to provide a faster, safer, more reliable, and easier to use alternative to [keybd_event](https://github.com/micmonay/keybd_event).
+This appears to provide a *faster*, *more reliable*, and *easier to use* interface to the functionality of [keybd_event](https://github.com/micmonay/keybd_event).
   
 
-these tricks should should result in a very fast and clean implementation of [keybd_event](https://github.com/micmonay/keybd_event).  
    
-#### See [my test results](#test) below and compare this wrapper with trying to use [keybd_event](https://github.com/micmonay/keybd_event) alone.
+#### See [my test results](#test) below and compare this wrapper with [keybd_event](https://github.com/micmonay/keybd_event) alone.
   
 ---
     
