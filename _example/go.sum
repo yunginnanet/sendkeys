@@ -1,0 +1,8 @@
+git.tcp.direct/kayos/sendkeys v0.0.0-20211205165836-9dbc5b7ef7f8 h1:MLok7dkRnVSNxOi14WF8z9m5tydrCn5wVTCV/ThQ9cs=
+git.tcp.direct/kayos/sendkeys v0.0.0-20211205165836-9dbc5b7ef7f8/go.mod h1:edjLKQfay4hUSVqDbZ7JoYg1PwM2BbUQ+rcoh9pz9qQ=
+github.com/eiannone/keyboard v0.0.0-20200508000154-caf4b762e807 h1:jdjd5e68T4R/j4PWxfZqcKY8KtT9oo8IPNVuV4bSXDQ=
+github.com/eiannone/keyboard v0.0.0-20200508000154-caf4b762e807/go.mod h1:Xoiu5VdKMvbRgHuY7+z64lhu/7lvax/22nzASF6GrO8=
+github.com/micmonay/keybd_event v1.1.1 h1:rv7omwXWYL9Lgf3PUq6uBgJI2k1yGkL/GD6dxc6nmSs=
+github.com/micmonay/keybd_event v1.1.1/go.mod h1:CGMWMDNgsfPljzrAWoybUOSKafQPZpv+rLigt2LzNGI=
+golang.org/x/sys v0.0.0-20211124211545-fe61309f8881 h1:TyHqChC80pFkXWraUUf6RuB5IqFdQieMLwwCJokV2pc=
+golang.org/x/sys v0.0.0-20211124211545-fe61309f8881/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

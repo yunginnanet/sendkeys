@@ -2,41 +2,114 @@
 [![GoDoc](https://godoc.org/git.tcp.direct/kayos/sendkeys?status.svg)](https://godoc.org/git.tcp.direct/kayos/sendkeys)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yunginnanet/sendkeys)](https://goreportcard.com/report/github.com/yunginnanet/sendkeys)
 
-### sendkeys is a cross-platform usability wrapper for the [keybd_event](https://github.com/micmonay/keybd_event) Go library.
-  
-  ---
-    
-      
- ### Summary     
-  Use this library to turn full strings into simulated keyboard events with ease;   
-  along with some neat features like **optionally randomized delays**.   
-      
- ---
-        
-### Improvements   
-* Optimized map lookups 
+## Summary
 
-* Negative integer -> abs inversion to determine shift key necessity  
+  sendkeys is a cross-platform usability wrapper for the [keybd_event](https://github.com/micmonay/keybd_event) Go library.
 
-  
-  
-* Only send one key at a time, clear state in between
+  Use this library to turn full strings into simulated keyboard events with ease. This library was created after a noVNC instance I was using had a broken clipboard feature.
 
-This appears to provide a *faster*, *more reliable*, and *easier to use* interface to the functionality of [keybd_event](https://github.com/micmonay/keybd_event).
-  
+  I have successfully used the [example](./_example/main.go) to send a very long password into a NoVNC instance that had all kinds of varying case alphanumeric characters along with many symbols.
 
-   
-#### See [my test results](#test) below and compare this wrapper with [keybd_event](https://github.com/micmonay/keybd_event) alone.
-  
----
-    
-![GoDoc image](https://tcp.ac/i/baROs)
+## Features
 
-### Usage  
-  
-#### Check the [unit test](./sendkeys_test.go) and the [docs](https://godoc.org/git.tcp.direct/kayos/sendkeys).
+* Optionally randomized delays between keypresses.
 
-### Status
+* Optimized map lookups should provide very high performance.
+
+* Negative integer -> abs inversion to determine when to send the shift key event.
+
+* Only send one key at a time, and clear the state inbetween keys for reliable functionality.
+
+* Appears to provide a *faster*, *more reliable*, and *easier to use* way for humans to access to the functionality of [keybd_event](https://github.com/micmonay/keybd_event).
+
+## Documentation
+
+#### For simple usage, take a look at [the example](./_example/main.go).
+
+<details>
+  <summary>GoDoc</summary>
+
+#### type KBOpt
+
+```go
+type KBOpt uint8
+```
+
+KBOpt[s] are options for our wrapper
+
+```go
+const (
+	// Stubborn will cause our sequences to continue despite errors.
+	// Otherwise, we will stop if our error count is over 0.
+	Stubborn KBOpt = iota
+	// Noisy will cause all errors to be printed to stdout.
+	Noisy
+	// Random will use random sleeps throughout the typing process.
+	// Otherwise, a static 10 milliseconds will be used.
+	Random
+	// NoDelay will bypass the 2 second delay for linux, mostly for testing.
+	NoDelay
+)
+```
+
+#### type KBWrap
+
+```go
+type KBWrap struct {
+	// There are unexported fields
+}
+```
+
+KBWrap is a wrapper for the keybd_event library for convenience
+
+#### func  NewKBWrapWithOptions
+
+```go
+func NewKBWrapWithOptions(opts ...KBOpt) (kbw *KBWrap, err error)
+```
+NewKBWrapWithOptions creates a new keyboard wrapper with the given options. As
+of writing, those options include: Stubborn Noisy and Random. The defaults are
+all false.
+
+#### func (*KBWrap) BackSpace
+
+```go
+func (kb *KBWrap) BackSpace()
+```
+BackSpace presses the backspace key. All other keys will be cleared.
+
+#### func (*KBWrap) Enter
+
+```go
+func (kb *KBWrap) Enter()
+```
+Enter presses the enter key. All other keys will be cleared.
+
+#### func (*KBWrap) Escape
+
+```go
+func (kb *KBWrap) Escape()
+```
+Escape presses the escape key. All other keys will be cleared.
+
+#### func (*KBWrap) Tab
+
+```go
+func (kb *KBWrap) Tab()
+```
+Tab presses the tab key. All other keys will be cleared.
+
+#### func (*KBWrap) Type
+
+```go
+func (kb *KBWrap) Type(s string) error
+```
+Type types out a string by simulating keystrokes. Check the exported Symbol map
+for non-alphanumeric keys.
+
+</details>
+
+## Status
 
 sendkeys is in early development. tests pass on a real machine, but I'm done trying to make github actions work for this one.
 
@@ -183,10 +256,15 @@ ok  	git.tcp.direct/kayos/sendkeys	8.139s
 
 </details>
 
-### Compatibility
+## Compatibility
 
-sendkeys has only been tested in Linux so far, however the underlying library seemingly has support for all Go platforms. This should be cross platform.
+~~sendkeys has only been tested in Linux so far~~
 
-### Credits
+the underlying library seemingly has support for all Go platforms. This should be cross platform.
+
+Recently briefly tested in windows, I'm not sure that the shift key trigger is working or not. Needs to be tested further.
+
+## Credits
+
 *  ##### [micmonay](https://github.com/micmonay) of course, for creating [keybd_event](https://github.com/micmonay/keybd_event).
 * ##### [Christopher Latham Sholes](https://en.wikipedia.org/wiki/Christopher_Latham_Sholes) for his work on the QWERTY keyboard.
