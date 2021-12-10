@@ -4,7 +4,7 @@
 
 ## Summary
 
-  sendkeys is a cross-platform usability wrapper for the [keybd_event](https://github.com/micmonay/keybd_event) Go library.
+  sendkeys is a cross-platform usability wrapper for the [keybd_event](https://github.com/micmonay/keybd_event) Go library. It aims to to provide a *faster*, *more reliable*, and *easier to use* way for humans to access the functionality of [keybd_event](https://github.com/micmonay/keybd_event).
 
   Use this library to turn full strings into simulated keyboard events with ease. This library was created after a noVNC instance I was using had a broken clipboard feature.
 
@@ -19,8 +19,6 @@
 * Negative integer -> abs inversion to determine when to send the shift key event.
 
 * Only send one key at a time, and clear the state inbetween keys for reliable functionality.
-
-* Appears to provide a *faster*, *more reliable*, and *easier to use* way for humans to access to the functionality of [keybd_event](https://github.com/micmonay/keybd_event).
 
 ## Documentation
 
