@@ -70,7 +70,9 @@ func main() {
 	println("Sending keys!")
 	for _, line := range textlines {
 		k.Type(line)
+		time.Sleep(15 * time.Millisecond)
 		k.Enter()
+		time.Sleep(15 * time.Millisecond)
 	}
 	println("\ndone!")
 }
