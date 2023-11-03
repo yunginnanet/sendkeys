@@ -102,7 +102,7 @@ func (kb *KBWrap) Enter() {
 // BackSpace presses the backspace key.
 // All other keys will be cleared.
 func (kb *KBWrap) BackSpace() {
-	kb.only(kbd.VK_ENTER)
+	kb.only(kbd.VK_BACKSPACE)
 }
 
 // Type types out a string by simulating keystrokes.
